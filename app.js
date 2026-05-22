@@ -110,6 +110,8 @@ const searchInput = document.querySelector("#search");
 const summaryElement = document.querySelector("#summary");
 const copyButton = document.querySelector("#copy-summary");
 const clearButton = document.querySelector("#clear-all");
+const saveImageButton = document.querySelector("#save-image");
+const shareButton = document.querySelector("#share-summary");
 const copyStatus = document.querySelector("#copy-status");
 const readCount = document.querySelector("#read-count");
 const wantCount = document.querySelector("#want-count");
@@ -179,30 +181,33 @@ function renderCheckbox(book, field, label, checked) {
 }
 
 function updateSummary() {
-  const read = selectedBooks("read");
-  const want = selectedBooks("want");
-  const recommend = selectedBooks("recommend");
+  const sections = getSummarySections();
+  const [read, want, recommend] = sections;
 
-  readCount.textContent = String(read.length);
-  wantCount.textContent = String(want.length);
-  recommendCount.textContent = String(recommend.length);
+  readCount.textContent = String(read.items.length);
+  wantCount.textContent = String(want.items.length);
+  recommendCount.textContent = String(recommend.items.length);
 
-  summaryElement.value = [
-    formatLine("I have read", read),
-    formatLine("I want to read", want),
-    formatLine("I highly recommend", recommend)
-  ].join("\n\n");
+  summaryElement.value = sections.map(formatLine).join("\n\n");
+}
+
+function getSummarySections() {
+  return [
+    { label: "I have read", items: selectedBooks("read") },
+    { label: "I want to read", items: selectedBooks("want") },
+    { label: "I highly recommend", items: selectedBooks("recommend") }
+  ];
 }
 
 function selectedBooks(field) {
   return books
     .filter((book) => Boolean(getBookState(book.rank)[field]))
-    .map((book) => `${book.rank}. ${book.title}`);
+    .map((book) => book.title);
 }
 
-function formatLine(label, selected) {
-  const titles = selected.length ? selected.join(" * ") : "none yet";
-  return `${label} ${selected.length}: ${titles}`;
+function formatLine(section) {
+  const titles = section.items.length ? section.items.join(" • ") : "none yet";
+  return `${section.label} ${section.items.length}: ${titles}`;
 }
 
 function handleCheckboxChange(event) {
@@ -233,15 +238,153 @@ function handleCheckboxChange(event) {
 async function copySummary() {
   try {
     await navigator.clipboard.writeText(summaryElement.value);
-    copyStatus.textContent = "Copied";
+    setStatus("Copied");
   } catch {
     summaryElement.select();
     document.execCommand("copy");
-    copyStatus.textContent = "Copied";
+    setStatus("Copied");
+  }
+}
+
+async function saveSummaryImage() {
+  const blob = await createSummaryImageBlob();
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "guardian-100-summary.png";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+  setStatus("Saved");
+}
+
+async function shareSummary() {
+  const blob = await createSummaryImageBlob();
+  const file = new File([blob], "guardian-100-summary.png", { type: "image/png" });
+  const shareData = {
+    title: "Guardian 100 novels summary",
+    text: summaryElement.value,
+    files: [file]
+  };
+
+  if (navigator.canShare && navigator.canShare({ files: [file] })) {
+    await navigator.share(shareData);
+    setStatus("Shared");
+    return;
   }
 
+  const subject = encodeURIComponent("Guardian 100 novels summary");
+  const body = encodeURIComponent(summaryElement.value);
+  window.location.href = `mailto:?subject=${subject}&body=${body}`;
+  setStatus("Email opened");
+}
+
+async function createSummaryImageBlob() {
+  const width = 1200;
+  const padding = 64;
+  const maxTextWidth = width - padding * 2;
+  const canvas = document.createElement("canvas");
+  const context = canvas.getContext("2d");
+  const sections = getSummarySections();
+  const layout = buildImageLayout(context, sections, maxTextWidth, padding);
+
+  canvas.width = width;
+  canvas.height = layout.height;
+
+  drawSummaryImage(canvas.getContext("2d"), sections, maxTextWidth, padding, layout.height);
+
+  return new Promise((resolve) => {
+    canvas.toBlob((blob) => resolve(blob), "image/png");
+  });
+}
+
+function buildImageLayout(context, sections, maxTextWidth, padding) {
+  let height = 210;
+  context.font = "30px Arial";
+
+  sections.forEach((section) => {
+    const text = section.items.length ? section.items.join(" • ") : "none yet";
+    height += 50;
+    height += wrapText(context, text, maxTextWidth).length * 38;
+    height += 34;
+  });
+
+  return { height: Math.max(height + padding, 520) };
+}
+
+function drawSummaryImage(context, sections, maxTextWidth, padding, height) {
+  context.fillStyle = "#f7f8fb";
+  context.fillRect(0, 0, 1200, height);
+
+  context.fillStyle = "#ffffff";
+  roundRect(context, 36, 36, 1128, height - 72, 24);
+  context.fill();
+
+  context.fillStyle = "#123047";
+  context.fillRect(36, 36, 1128, 134);
+  context.fillStyle = "#f0ca69";
+  context.font = "700 24px Arial";
+  context.fillText("Guardian 100 novels", padding, 86);
+  context.fillStyle = "#ffffff";
+  context.font = "700 52px Georgia";
+  context.fillText("My book list", padding, 142);
+
+  let y = 230;
+  sections.forEach((section) => {
+    context.fillStyle = "#172033";
+    context.font = "700 32px Arial";
+    context.fillText(`${section.label} ${section.items.length}`, padding, y);
+    y += 46;
+
+    context.fillStyle = "#334155";
+    context.font = "30px Arial";
+    const text = section.items.length ? section.items.join(" • ") : "none yet";
+    wrapText(context, text, maxTextWidth).forEach((line) => {
+      context.fillText(line, padding, y);
+      y += 38;
+    });
+    y += 34;
+  });
+}
+
+function wrapText(context, text, maxWidth) {
+  const words = text.split(" ");
+  const lines = [];
+  let line = "";
+
+  words.forEach((word) => {
+    const testLine = line ? `${line} ${word}` : word;
+    if (context.measureText(testLine).width > maxWidth && line) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = testLine;
+    }
+  });
+
+  if (line) lines.push(line);
+  return lines;
+}
+
+function roundRect(context, x, y, width, height, radius) {
+  context.beginPath();
+  context.moveTo(x + radius, y);
+  context.lineTo(x + width - radius, y);
+  context.quadraticCurveTo(x + width, y, x + width, y + radius);
+  context.lineTo(x + width, y + height - radius);
+  context.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+  context.lineTo(x + radius, y + height);
+  context.quadraticCurveTo(x, y + height, x, y + height - radius);
+  context.lineTo(x, y + radius);
+  context.quadraticCurveTo(x, y, x + radius, y);
+  context.closePath();
+}
+
+function setStatus(message) {
+  copyStatus.textContent = message;
   window.setTimeout(() => {
-    copyStatus.textContent = "";
+    if (copyStatus.textContent === message) copyStatus.textContent = "";
   }, 1800);
 }
 
@@ -265,6 +408,8 @@ listElement.addEventListener("change", handleCheckboxChange);
 searchInput.addEventListener("input", renderList);
 copyButton.addEventListener("click", copySummary);
 clearButton.addEventListener("click", clearAll);
+saveImageButton.addEventListener("click", saveSummaryImage);
+shareButton.addEventListener("click", shareSummary);
 
 renderList();
 updateSummary();

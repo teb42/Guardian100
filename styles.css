@@ -290,6 +290,13 @@ input[type="checkbox"] {
   font-size: 1.25rem;
 }
 
+.summary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
 #copy-status {
   min-height: 1.2em;
   color: var(--accent-strong);
@@ -375,6 +382,11 @@ footer {
   }
 
   .actions {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-actions {
+    display: grid;
     grid-template-columns: 1fr;
   }
 }
