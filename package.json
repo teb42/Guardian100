@@ -1,0 +1,25 @@
+{
+  "name": "guardian100",
+  "version": "1.0.0",
+  "description": "A static checklist for the Guardian's 100 best novels list.",
+  "main": "app.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teb42/Guardian100.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/teb42/Guardian100/issues"
+  },
+  "homepage": "https://github.com/teb42/Guardian100#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.60.0"
+  }
+}
