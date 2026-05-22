@@ -1,106 +1,106 @@
 const STORAGE_KEY = "guardian-100-novels-tracker-v1";
 
 const books = [
-  { rank: 1, title: "Middlemarch" },
-  { rank: 2, title: "Beloved" },
-  { rank: 3, title: "Ulysses" },
-  { rank: 4, title: "To the Lighthouse" },
-  { rank: 5, title: "In Search of Lost Time" },
-  { rank: 6, title: "Anna Karenina" },
-  { rank: 7, title: "War and Peace" },
-  { rank: 8, title: "Jane Eyre" },
-  { rank: 9, title: "Pride and Prejudice" },
-  { rank: 10, title: "Madame Bovary" },
-  { rank: 11, title: "The Great Gatsby" },
-  { rank: 12, title: "Bleak House" },
-  { rank: 13, title: "Emma" },
-  { rank: 14, title: "Mrs Dalloway" },
-  { rank: 15, title: "Moby-Dick" },
-  { rank: 16, title: "Nineteen Eighty-Four" },
-  { rank: 17, title: "One Hundred Years of Solitude" },
-  { rank: 18, title: "Persuasion" },
-  { rank: 19, title: "The Life and Opinions of Tristram Shandy, Gentleman" },
-  { rank: 20, title: "Wuthering Heights" },
-  { rank: 21, title: "The Portrait of a Lady" },
-  { rank: 22, title: "Things Fall Apart" },
-  { rank: 23, title: "Midnight's Children" },
-  { rank: 24, title: "The Remains of the Day" },
-  { rank: 25, title: "Lolita" },
-  { rank: 26, title: "Don Quixote" },
-  { rank: 27, title: "The Trial" },
-  { rank: 28, title: "The Brothers Karamazov" },
-  { rank: 29, title: "Pale Fire" },
-  { rank: 30, title: "Frankenstein" },
-  { rank: 31, title: "The Prime of Miss Jean Brodie" },
-  { rank: 32, title: "The God of Small Things" },
-  { rank: 33, title: "David Copperfield" },
-  { rank: 34, title: "Wolf Hall" },
-  { rank: 35, title: "Great Expectations" },
-  { rank: 36, title: "The Handmaid's Tale" },
-  { rank: 37, title: "Invisible Man" },
-  { rank: 38, title: "The Age of Innocence" },
-  { rank: 39, title: "Their Eyes Were Watching God" },
-  { rank: 40, title: "Song of Solomon" },
-  { rank: 41, title: "Heart of Darkness" },
-  { rank: 42, title: "The Magic Mountain" },
-  { rank: 43, title: "Housekeeping" },
-  { rank: 44, title: "Giovanni's Room" },
-  { rank: 45, title: "The Golden Notebook" },
-  { rank: 46, title: "The Leopard" },
-  { rank: 47, title: "Vanity Fair" },
-  { rank: 48, title: "The Metamorphosis" },
-  { rank: 49, title: "A Fine Balance" },
-  { rank: 50, title: "Wide Sargasso Sea" },
-  { rank: 51, title: "My Brilliant Friend" },
-  { rank: 52, title: "The Golden Bowl" },
-  { rank: 53, title: "The Transit of Venus" },
-  { rank: 54, title: "Orlando" },
-  { rank: 55, title: "The Waves" },
-  { rank: 56, title: "Mansfield Park" },
-  { rank: 57, title: "The Sound and the Fury" },
-  { rank: 58, title: "Disgrace" },
-  { rank: 59, title: "Never Let Me Go" },
-  { rank: 60, title: "Howards End" },
-  { rank: 61, title: "The Rings of Saturn" },
-  { rank: 62, title: "Half of a Yellow Sun" },
-  { rank: 63, title: "White Teeth" },
-  { rank: 64, title: "The Good Soldier" },
-  { rank: 65, title: "The Color Purple" },
-  { rank: 66, title: "The Master and Margarita" },
-  { rank: 67, title: "The Man Without Qualities" },
-  { rank: 68, title: "Blood Meridian" },
-  { rank: 69, title: "Crime and Punishment" },
-  { rank: 70, title: "Jude the Obscure" },
-  { rank: 71, title: "Kindred" },
-  { rank: 72, title: "Our Mutual Friend" },
-  { rank: 73, title: "Austerlitz" },
-  { rank: 74, title: "Nervous Conditions" },
-  { rank: 75, title: "The Bluest Eye" },
-  { rank: 76, title: "Dracula" },
-  { rank: 77, title: "The Rainbow" },
-  { rank: 78, title: "A House for Mr Biswas" },
-  { rank: 79, title: "Go Tell It on the Mountain" },
-  { rank: 80, title: "Rebecca" },
-  { rank: 81, title: "Buddenbrooks" },
-  { rank: 82, title: "The End of the Affair" },
-  { rank: 83, title: "A Farewell to Arms" },
-  { rank: 84, title: "The Talented Mr Ripley" },
-  { rank: 85, title: "The Vegetarian" },
-  { rank: 86, title: "The Turn of the Screw" },
-  { rank: 87, title: "The Line of Beauty" },
-  { rank: 88, title: "Ragtime" },
-  { rank: 89, title: "The Left Hand of Darkness" },
-  { rank: 90, title: "Jacob's Room" },
-  { rank: 91, title: "Life and Fate" },
-  { rank: 92, title: "Sentimental Education" },
-  { rank: 93, title: "Invisible Cities" },
-  { rank: 94, title: "The Known World" },
-  { rank: 95, title: "The Return of the Native" },
-  { rank: 96, title: "Pedro Páramo" },
-  { rank: 97, title: "Catch-22" },
-  { rank: 98, title: "The Road" },
-  { rank: 99, title: "The Go-Between" },
-  { rank: 100, title: "My Ántonia" }
+  { rank: 1, title: "Middlemarch", author: "George Eliot" },
+  { rank: 2, title: "Beloved", author: "Toni Morrison" },
+  { rank: 3, title: "Ulysses", author: "James Joyce" },
+  { rank: 4, title: "To the Lighthouse", author: "Virginia Woolf" },
+  { rank: 5, title: "In Search of Lost Time", author: "Marcel Proust" },
+  { rank: 6, title: "Anna Karenina", author: "Leo Tolstoy" },
+  { rank: 7, title: "War and Peace", author: "Leo Tolstoy" },
+  { rank: 8, title: "Jane Eyre", author: "Charlotte Brontë" },
+  { rank: 9, title: "Pride and Prejudice", author: "Jane Austen" },
+  { rank: 10, title: "Madame Bovary", author: "Gustave Flaubert" },
+  { rank: 11, title: "The Great Gatsby", author: "F Scott Fitzgerald" },
+  { rank: 12, title: "Bleak House", author: "Charles Dickens" },
+  { rank: 13, title: "Emma", author: "Jane Austen" },
+  { rank: 14, title: "Mrs Dalloway", author: "Virginia Woolf" },
+  { rank: 15, title: "Moby-Dick", author: "Herman Melville" },
+  { rank: 16, title: "Nineteen Eighty-Four", author: "George Orwell" },
+  { rank: 17, title: "One Hundred Years of Solitude", author: "Gabriel García Márquez" },
+  { rank: 18, title: "Persuasion", author: "Jane Austen" },
+  { rank: 19, title: "The Life and Opinions of Tristram Shandy, Gentleman", author: "Laurence Sterne" },
+  { rank: 20, title: "Wuthering Heights", author: "Emily Brontë" },
+  { rank: 21, title: "The Portrait of a Lady", author: "Henry James" },
+  { rank: 22, title: "Things Fall Apart", author: "Chinua Achebe" },
+  { rank: 23, title: "Midnight's Children", author: "Salman Rushdie" },
+  { rank: 24, title: "The Remains of the Day", author: "Kazuo Ishiguro" },
+  { rank: 25, title: "Lolita", author: "Vladimir Nabokov" },
+  { rank: 26, title: "Don Quixote", author: "Miguel de Cervantes" },
+  { rank: 27, title: "The Trial", author: "Franz Kafka" },
+  { rank: 28, title: "The Brothers Karamazov", author: "Fyodor Dostoyevsky" },
+  { rank: 29, title: "Pale Fire", author: "Vladimir Nabokov" },
+  { rank: 30, title: "Frankenstein", author: "Mary Shelley" },
+  { rank: 31, title: "The Prime of Miss Jean Brodie", author: "Muriel Spark" },
+  { rank: 32, title: "The God of Small Things", author: "Arundhati Roy" },
+  { rank: 33, title: "David Copperfield", author: "Charles Dickens" },
+  { rank: 34, title: "Wolf Hall", author: "Hilary Mantel" },
+  { rank: 35, title: "Great Expectations", author: "Charles Dickens" },
+  { rank: 36, title: "The Handmaid's Tale", author: "Margaret Atwood" },
+  { rank: 37, title: "Invisible Man", author: "Ralph Ellison" },
+  { rank: 38, title: "The Age of Innocence", author: "Edith Wharton" },
+  { rank: 39, title: "Their Eyes Were Watching God", author: "Zora Neale Hurston" },
+  { rank: 40, title: "Song of Solomon", author: "Toni Morrison" },
+  { rank: 41, title: "Heart of Darkness", author: "Joseph Conrad" },
+  { rank: 42, title: "The Magic Mountain", author: "Thomas Mann" },
+  { rank: 43, title: "Housekeeping", author: "Marilynne Robinson" },
+  { rank: 44, title: "Giovanni's Room", author: "James Baldwin" },
+  { rank: 45, title: "The Golden Notebook", author: "Doris Lessing" },
+  { rank: 46, title: "The Leopard", author: "Giuseppe Tomasi di Lampedusa" },
+  { rank: 47, title: "Vanity Fair", author: "William Makepeace Thackeray" },
+  { rank: 48, title: "The Metamorphosis", author: "Franz Kafka" },
+  { rank: 49, title: "A Fine Balance", author: "Rohinton Mistry" },
+  { rank: 50, title: "Wide Sargasso Sea", author: "Jean Rhys" },
+  { rank: 51, title: "My Brilliant Friend", author: "Elena Ferrante" },
+  { rank: 52, title: "The Golden Bowl", author: "Henry James" },
+  { rank: 53, title: "The Transit of Venus", author: "Shirley Hazzard" },
+  { rank: 54, title: "Orlando", author: "Virginia Woolf" },
+  { rank: 55, title: "The Waves", author: "Virginia Woolf" },
+  { rank: 56, title: "Mansfield Park", author: "Jane Austen" },
+  { rank: 57, title: "The Sound and the Fury", author: "William Faulkner" },
+  { rank: 58, title: "Disgrace", author: "JM Coetzee" },
+  { rank: 59, title: "Never Let Me Go", author: "Kazuo Ishiguro" },
+  { rank: 60, title: "Howards End", author: "EM Forster" },
+  { rank: 61, title: "The Rings of Saturn", author: "WG Sebald" },
+  { rank: 62, title: "Half of a Yellow Sun", author: "Chimamanda Ngozi Adichie" },
+  { rank: 63, title: "White Teeth", author: "Zadie Smith" },
+  { rank: 64, title: "The Good Soldier", author: "Ford Madox Ford" },
+  { rank: 65, title: "The Color Purple", author: "Alice Walker" },
+  { rank: 66, title: "The Master and Margarita", author: "Mikhail Bulgakov" },
+  { rank: 67, title: "The Man Without Qualities", author: "Robert Musil" },
+  { rank: 68, title: "Blood Meridian", author: "Cormac McCarthy" },
+  { rank: 69, title: "Crime and Punishment", author: "Fyodor Dostoevsky" },
+  { rank: 70, title: "Jude the Obscure", author: "Thomas Hardy" },
+  { rank: 71, title: "Kindred", author: "Octavia E Butler" },
+  { rank: 72, title: "Our Mutual Friend", author: "Charles Dickens" },
+  { rank: 73, title: "Austerlitz", author: "WG Sebald" },
+  { rank: 74, title: "Nervous Conditions", author: "Tsitsi Dangarembga" },
+  { rank: 75, title: "The Bluest Eye", author: "Toni Morrison" },
+  { rank: 76, title: "Dracula", author: "Bram Stoker" },
+  { rank: 77, title: "The Rainbow", author: "DH Lawrence" },
+  { rank: 78, title: "A House for Mr Biswas", author: "VS Naipaul" },
+  { rank: 79, title: "Go Tell It on the Mountain", author: "James Baldwin" },
+  { rank: 80, title: "Rebecca", author: "Daphne du Maurier" },
+  { rank: 81, title: "Buddenbrooks", author: "Thomas Mann" },
+  { rank: 82, title: "The End of the Affair", author: "Graham Greene" },
+  { rank: 83, title: "A Farewell to Arms", author: "Ernest Hemingway" },
+  { rank: 84, title: "The Talented Mr Ripley", author: "Patricia Highsmith" },
+  { rank: 85, title: "The Vegetarian", author: "Han Kang" },
+  { rank: 86, title: "The Turn of the Screw", author: "Henry James" },
+  { rank: 87, title: "The Line of Beauty", author: "Alan Hollinghurst" },
+  { rank: 88, title: "Ragtime", author: "EL Doctorow" },
+  { rank: 89, title: "The Left Hand of Darkness", author: "Ursula K Le Guin" },
+  { rank: 90, title: "Jacob's Room", author: "Virginia Woolf" },
+  { rank: 91, title: "Life and Fate", author: "Vasily Grossman" },
+  { rank: 92, title: "Sentimental Education", author: "Gustave Flaubert" },
+  { rank: 93, title: "Invisible Cities", author: "Italo Calvino" },
+  { rank: 94, title: "The Known World", author: "Edward P Jones" },
+  { rank: 95, title: "The Return of the Native", author: "Thomas Hardy" },
+  { rank: 96, title: "Pedro Páramo", author: "Juan Rulfo" },
+  { rank: 97, title: "Catch-22", author: "Joseph Heller" },
+  { rank: 98, title: "The Road", author: "Cormac McCarthy" },
+  { rank: 99, title: "The Go-Between", author: "LP Hartley" },
+  { rank: 100, title: "My Ántonia", author: "Willa Cather" }
 ];
 
 const state = loadState();
@@ -113,6 +113,7 @@ const clearButton = document.querySelector("#clear-all");
 const saveImageButton = document.querySelector("#save-image");
 const shareButton = document.querySelector("#share-summary");
 const copyStatus = document.querySelector("#copy-status");
+const authorRanking = document.querySelector("#author-ranking");
 const readCount = document.querySelector("#read-count");
 const wantCount = document.querySelector("#want-count");
 const recommendCount = document.querySelector("#recommend-count");
@@ -140,7 +141,7 @@ function renderList() {
 
   books
     .filter((book) => {
-      const haystack = `${book.rank} ${book.title}`.toLowerCase();
+      const haystack = `${book.rank} ${book.title} ${book.author}`.toLowerCase();
       return haystack.includes(query);
     })
     .forEach((book) => {
@@ -154,6 +155,7 @@ function renderList() {
           <span class="rank">${book.rank}</span>
           <span class="title">${book.title}</span>
         </div>
+        <div class="author">${book.author}</div>
         ${renderCheckbox(book, "read", "Read", itemState.read)}
         ${renderCheckbox(book, "want", "Want to read", itemState.want)}
         ${renderCheckbox(book, "recommend", "Highly recommend", itemState.recommend)}
@@ -189,6 +191,7 @@ function updateSummary() {
   recommendCount.textContent = String(recommend.items.length);
 
   summaryElement.value = sections.map(formatLine).join("\n\n");
+  renderAuthorRanking();
 }
 
 function getSummarySections() {
@@ -208,6 +211,37 @@ function selectedBooks(field) {
 function formatLine(section) {
   const titles = section.items.length ? section.items.join(" • ") : "none yet";
   return `${section.label} ${section.items.length}: ${titles}`;
+}
+
+function getTopReadAuthors() {
+  const counts = new Map();
+
+  books.forEach((book) => {
+    if (!getBookState(book.rank).read) return;
+    counts.set(book.author, (counts.get(book.author) || 0) + 1);
+  });
+
+  return Array.from(counts, ([author, count]) => ({ author, count }))
+    .sort((a, b) => b.count - a.count || a.author.localeCompare(b.author))
+    .slice(0, 5);
+}
+
+function renderAuthorRanking() {
+  const authors = getTopReadAuthors();
+
+  if (!authors.length) {
+    authorRanking.innerHTML = `<li>No read books yet</li>`;
+    return;
+  }
+
+  authorRanking.innerHTML = authors
+    .map((entry) => `
+      <li>
+        <strong>${entry.author}</strong>
+        <span class="author-count">${entry.count} read</span>
+      </li>
+    `)
+    .join("");
 }
 
 function handleCheckboxChange(event) {
@@ -301,6 +335,7 @@ async function createSummaryImageBlob() {
 
 function buildImageLayout(context, sections, maxTextWidth, padding) {
   let height = 210;
+  const topAuthors = getTopReadAuthors();
   context.font = "30px Arial";
 
   sections.forEach((section) => {
@@ -309,6 +344,9 @@ function buildImageLayout(context, sections, maxTextWidth, padding) {
     height += wrapText(context, text, maxTextWidth).length * 38;
     height += 34;
   });
+
+  height += 66;
+  height += Math.max(topAuthors.length, 1) * 38;
 
   return { height: Math.max(height + padding, 520) };
 }
@@ -328,7 +366,7 @@ function drawSummaryImage(context, sections, maxTextWidth, padding, height) {
   context.fillText("Guardian 100 novels", padding, 86);
   context.fillStyle = "#ffffff";
   context.font = "700 52px Georgia";
-  context.fillText("My book list", padding, 142);
+  context.fillText("My tracker", padding, 142);
 
   let y = 230;
   sections.forEach((section) => {
@@ -345,6 +383,23 @@ function drawSummaryImage(context, sections, maxTextWidth, padding, height) {
       y += 38;
     });
     y += 34;
+  });
+
+  const topAuthors = getTopReadAuthors();
+  context.fillStyle = "#172033";
+  context.font = "700 32px Arial";
+  context.fillText("Most read authors", padding, y);
+  y += 46;
+
+  context.fillStyle = "#334155";
+  context.font = "30px Arial";
+  const authorLines = topAuthors.length
+    ? topAuthors.map((entry, index) => `${index + 1}. ${entry.author} - ${entry.count} read`)
+    : ["No read books yet"];
+
+  authorLines.forEach((line) => {
+    context.fillText(line, padding, y);
+    y += 38;
   });
 }
 

@@ -14,7 +14,7 @@
     <header class="site-header">
       <div class="header-inner">
         <p class="eyebrow">Guardian 100 novels</p>
-        <h1>Book list tracker</h1>
+        <h1>Tracker</h1>
         <p class="intro">
           Tick what you have read, what you want to read, and what you highly recommend.
           Your choices stay in this browser.
@@ -31,7 +31,7 @@
     <main>
       <section class="controls" aria-label="List controls">
         <label class="search-label" for="search">Search books</label>
-        <input id="search" type="search" placeholder="Filter by title or rank" autocomplete="off">
+        <input id="search" type="search" placeholder="Filter by title, author or rank" autocomplete="off">
         <div class="actions">
           <button id="copy-summary" type="button">Copy summary</button>
           <button id="clear-all" type="button" class="secondary">Clear all</button>
@@ -56,6 +56,7 @@
       <section class="list-shell" aria-label="Book checklist">
         <div class="list-header" aria-hidden="true">
           <span>Book</span>
+          <span>Author</span>
           <span>Read</span>
           <span>Want</span>
           <span>Recommend</span>
@@ -73,6 +74,11 @@
           <button id="share-summary" type="button">Share</button>
         </div>
         <textarea id="summary" readonly rows="8"></textarea>
+      </section>
+
+      <section class="author-panel" aria-label="Most read authors">
+        <h2>Most read authors</h2>
+        <ol id="author-ranking" class="author-ranking"></ol>
       </section>
     </main>
 

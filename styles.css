@@ -87,7 +87,8 @@ main {
 
 .controls,
 .totals,
-.summary-panel {
+.summary-panel,
+.author-panel {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -201,7 +202,7 @@ button.secondary:hover {
 .list-header,
 .book-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 92px 92px 126px;
+  grid-template-columns: minmax(0, 1.35fr) minmax(150px, 0.65fr) 92px 92px 126px;
   align-items: center;
   gap: 10px;
 }
@@ -257,6 +258,14 @@ button.secondary:hover {
   font-weight: 760;
 }
 
+.author {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 650;
+}
+
 .check-cell {
   display: grid;
   place-items: center;
@@ -274,6 +283,11 @@ input[type="checkbox"] {
 }
 
 .summary-panel {
+  margin-top: 16px;
+  padding: 16px;
+}
+
+.author-panel {
   margin-top: 16px;
   padding: 16px;
 }
@@ -315,6 +329,28 @@ textarea {
   font: inherit;
 }
 
+.author-ranking {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 24px;
+}
+
+.author-ranking li {
+  padding: 8px 0;
+  border-bottom: 1px solid #edf0f5;
+}
+
+.author-ranking li:last-child {
+  border-bottom: 0;
+}
+
+.author-count {
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
 footer {
   padding: 0 0 30px;
   color: var(--muted);
@@ -344,6 +380,10 @@ footer {
 
   .book-meta {
     align-items: flex-start;
+  }
+
+  .author {
+    padding-left: 50px;
   }
 
   .check-cell {
