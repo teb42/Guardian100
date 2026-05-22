@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Guardian 100 Novels Tracker</title>
+    <meta
+      name="description"
+      content="A private checklist for tracking read, want-to-read, and highly recommended books from the Guardian's 100 best novels list."
+    >
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <p class="eyebrow">Guardian 100 novels</p>
+        <h1>Book list tracker</h1>
+        <p class="intro">
+          Tick what you have read, what you want to read, and what you highly recommend.
+          Your choices stay in this browser.
+        </p>
+        <a
+          class="source-link"
+          href="https://www.theguardian.com/books/ng-interactive/2026/may/12/the-100-best-novels-of-all-time"
+          target="_blank"
+          rel="noreferrer"
+        >Original Guardian list</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="controls" aria-label="List controls">
+        <label class="search-label" for="search">Search books</label>
+        <input id="search" type="search" placeholder="Filter by title or rank" autocomplete="off">
+        <div class="actions">
+          <button id="copy-summary" type="button">Copy summary</button>
+          <button id="clear-all" type="button" class="secondary">Clear all</button>
+        </div>
+      </section>
+
+      <section class="totals" aria-label="Current totals">
+        <div>
+          <strong id="read-count">0</strong>
+          <span>read</span>
+        </div>
+        <div>
+          <strong id="want-count">0</strong>
+          <span>want</span>
+        </div>
+        <div>
+          <strong id="recommend-count">0</strong>
+          <span>recommend</span>
+        </div>
+      </section>
+
+      <section class="list-shell" aria-label="Book checklist">
+        <div class="list-header" aria-hidden="true">
+          <span>Book</span>
+          <span>Read</span>
+          <span>Want</span>
+          <span>Recommend</span>
+        </div>
+        <ol id="book-list" class="book-list"></ol>
+      </section>
+
+      <section class="summary-panel" aria-label="Generated summary">
+        <div class="summary-heading">
+          <h2>Summary</h2>
+          <span id="copy-status" role="status" aria-live="polite"></span>
+        </div>
+        <textarea id="summary" readonly rows="8"></textarea>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        List data is based on The Guardian's published ranking. This page is an
+        unofficial personal tracker and does not collect responses.
+      </p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
